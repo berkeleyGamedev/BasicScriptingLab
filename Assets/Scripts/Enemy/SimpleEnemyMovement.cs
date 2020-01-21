@@ -24,7 +24,7 @@ public class SimpleEnemyMovement : EnemyMovement
             if (numRespawns > 0)
             {
                 numRespawns -= 1;
-                Respawn();      // Unfortunately this will not add any score for respawns, but that is fine for the purposes of this demo/lab
+                Respawn();      // Unfortunately, this will not add any score for respawns.  That is fine for the purposes of this demo/lab
             }
             else
             {

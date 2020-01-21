@@ -5,8 +5,8 @@ using UnityEngine;
 public class SniperMovement : EnemyMovement
 {
 
-    /* The start function first finds the player by calling the base class's start method. Then, the start below tracks various 
-     * components of the target in preparation for the FirstOrderIntercept function which tracks down the player and then shoots
+    /* The Start function first finds the player by calling the base class's Start method. Then, the start below tracks various 
+     * components of the target in preparation for the FirstOrderIntercept function, which tracks down the player and then shoots
      * our sniper in the direction of the player.
      */
     protected override void Start()
@@ -22,17 +22,12 @@ public class SniperMovement : EnemyMovement
     }
 
 
-
-
-
-
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Fancy math below borrowed from: http://wiki.unity3d.com/index.php/Calculating_Lead_For_Projectiles //
+    // Math below borrowed from: http://wiki.unity3d.com/index.php/Calculating_Lead_For_Projectiles //
     // Slight modifications were made to remove the need for shooterVelocity and use Vector2              //
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //first-order intercept using absolute target position
+    //First-order intercept using absolute target position
     public static Vector2 FirstOrderIntercept
     (
         Vector2 shooterPosition,
@@ -51,7 +46,7 @@ public class SniperMovement : EnemyMovement
         );
         return targetPosition + t * (targetRelativeVelocity);
     }
-    //first-order intercept using relative target position
+    //First-order intercept using relative target position
     public static float FirstOrderInterceptTime
     (
         float shotSpeed,
@@ -65,7 +60,7 @@ public class SniperMovement : EnemyMovement
 
         float a = velocitySquared - shotSpeed * shotSpeed;
 
-        //handle similar velocities
+        //Handle similar velocities
         if (Mathf.Abs(a) < 0.001f)
         {
             float t = -targetRelativePosition.sqrMagnitude /
@@ -76,7 +71,7 @@ public class SniperMovement : EnemyMovement
                     targetRelativePosition
                 )
             );
-            return Mathf.Max(t, 0f); //don't shoot back in time
+            return Mathf.Max(t, 0f); //Don't shoot back in time
         }
 
         float b = 2f * Vector2.Dot(targetRelativeVelocity, targetRelativePosition);
@@ -84,22 +79,22 @@ public class SniperMovement : EnemyMovement
         float determinant = b * b - 4f * a * c;
 
         if (determinant > 0f)
-        { //determinant > 0; two intercept paths (most common)
+        { //Determinant > 0; two intercept paths (most common)
             float t1 = (-b + Mathf.Sqrt(determinant)) / (2f * a),
                     t2 = (-b - Mathf.Sqrt(determinant)) / (2f * a);
             if (t1 > 0f)
             {
                 if (t2 > 0f)
-                    return Mathf.Min(t1, t2); //both are positive
+                    return Mathf.Min(t1, t2); //Both are positive
                 else
-                    return t1; //only t1 is positive
+                    return t1; //Only t1 is positive
             }
             else
-                return Mathf.Max(t2, 0f); //don't shoot back in time
+                return Mathf.Max(t2, 0f); //Don't shoot back in time
         }
-        else if (determinant < 0f) //determinant < 0; no intercept path
+        else if (determinant < 0f) //Determinant < 0; no intercept path
             return 0f;
-        else //determinant = 0; one intercept path, pretty much never happens
-            return Mathf.Max(-b / (2f * a), 0f); //don't shoot back in time
+        else //Determinant = 0; one intercept path, pretty much never happens
+            return Mathf.Max(-b / (2f * a), 0f); //Don't shoot back in time
     }
 }

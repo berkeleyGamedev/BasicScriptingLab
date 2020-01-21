@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour {
     public float speed = 6f;
     public float spawnDistance = 20f; //Distance away from the player that the enemy will spawn
-    protected GameObject target; //protected allows the children to access this variable
+    protected GameObject target; //Protected: allows the children to access this variable
     protected virtual void Start()
     {
         target = GameObject.Find("Player");
