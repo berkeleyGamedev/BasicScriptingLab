@@ -611,10 +611,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 1f16189c-8bf5-421d-965c-9774ed80affa
+  cloudProjectId: 
   framebufferDepthMemorylessMode: 0
-  projectName: Basic Scripting Lab (1)
-  organizationId: lk_1001
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
