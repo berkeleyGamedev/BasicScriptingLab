@@ -13,5 +13,7 @@ public class EnemyData : MonoBehaviour{
     public float spawnTimer;
     [HideInInspector]
     public float currentSpawnDelay;
+    [HideInInspector]
+    public float firstSpawnTimer;
 
 }
