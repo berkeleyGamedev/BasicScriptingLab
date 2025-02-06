@@ -18,7 +18,7 @@ public class SniperMovement : EnemyMovement
         Vector2 myPos = transform.position;
 
         Vector2 interceptPoint = FirstOrderIntercept(myPos, speed, targetPos, targetVel);
-        gameObject.GetComponent<Rigidbody2D>().velocity = (interceptPoint - myPos).normalized * speed;
+        gameObject.GetComponent<Rigidbody2D>().linearVelocity = (interceptPoint - myPos).normalized * speed;
     }
 
 
